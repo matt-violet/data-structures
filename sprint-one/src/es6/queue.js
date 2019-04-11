@@ -1,7 +1,32 @@
 class Queue {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
-  constructor() {
+   constructor() {
+ 	 this.storage = {};
+     this.index = 0;
+   }
+
+  enqueue(value) {
+    this.storage[this.index + 1] = value;
+    for (var x in this.storage) {
+      this.storage[x + 1] = this.storage[this.index]  
+    }
+    this.index = this.index + 1;
   }
 
-}
+   dequeue() {
+   	var deleted;
+    deleted = this.storage[1]
+    this.storage[this.index - 1] = this.storage[this.index]
+    this.index = this.index - 1
+    if (this.index < 0) {
+      this.index = 0
+    }
+    delete this.storage[0]
+    return deleted;
+  }
+
+  size() {
+    return this.index;
+  }
+ }
+
+
