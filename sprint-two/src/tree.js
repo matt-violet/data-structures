@@ -8,9 +8,13 @@ var Tree = function(value) {
   return newTree;
 };
 
+
+
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
+  // sets value as target of a node
+  // adds node as child of the tree
 };
 
 treeMethods.contains = function(target) {
@@ -21,3 +25,15 @@ treeMethods.contains = function(target) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+/*
+
+ newTree = {
+   value = value,
+   children = [{}, {}, {}],
+ }
+
+ treeMethods = {
+   addChild = {f},
+   contains = {f}
+ }
