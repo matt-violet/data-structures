@@ -7,25 +7,41 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  // declare tuple = [k, v]
-  // if there is no bucket at index
-    // declare a buck
-    // push tuple to bucket at index
-  // else 
-    // iterate over bucket
-      // if bucket does not contain key
-        // push into bucket
-      // else
-        // reassign key with new value
-  
+  var tuple = [k, v]; // declare tuple = [k, v]
+  if (!this._storage.get(index)) { // if there is no bucket at index
+    var newBucket = [tuple]; // declare a buck  // push tuple to bucket at index
+    this._storage.set(index, newBucket);
+  } else {
+    var bucket = this._storage.get(index);
+    for (var i = 0; i < bucket.length; i++) { // iterate over bucket
+      if (bucket[i][0] === k) {
+        bucket[i][1] = v; // reassign key with new value
+      }
+    } // else if bucket does not contain key
+    bucket.push(tuple); // push into bucket
+  }
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  var bucket = this._storage.get(index); // locate (.get) bucket stored at index
+  for (var i = 0; i < bucket.length; i++) { // iterate over bucket 
+    var tuple = bucket[i];
+    if (tuple[0] === k) { // find tuple with input key at tuple[0]
+      return tuple[1];
+    } 
+  } 
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  var bucket = this._storage.get(index); // locate bucket stored at index
+  for (var j = 0; j < bucket.length; j++) { // iterate over bucket
+    var tuple = bucket[j];
+    if (tuple[0] === k) { // find index of tuple with input key at tuple[0]
+      bucket.splice(j, 1); // bucket.splice(j, 1);
+    }
+  }
 };
 
 
@@ -36,7 +52,6 @@ HashTable.prototype.remove = function(k) {
 
 
 /*
-
 var hash = new HashTable;
 
 var checkLimit = {f};
