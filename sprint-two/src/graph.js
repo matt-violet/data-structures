@@ -39,7 +39,7 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
             return true;
         }
     } 
-    return false; // if array[i] === target edge ? true : false;        
+    return false; // if array[i] === target edge ? true : false;         
 };
 
 // Connects two nodes in a graph by adding an edge between them.
