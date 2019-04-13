@@ -37,7 +37,6 @@ var LimitedArray = function(limit) {
       throw new Error('Error trying to access an over-the-limit index');
     }
   };
-
   return limitedArray;
 };
 
@@ -57,3 +56,18 @@ var getIndexBelowMaxForKey = function(str, max) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+/*
+LimitedArray = function () {
+  storage = []; // hash table
+  
+  limitedArray = { // interface
+    get: {f},
+    set: {f},
+    each: {f}
+  }
+
+  return limitedArray
+}
+  
+  */
