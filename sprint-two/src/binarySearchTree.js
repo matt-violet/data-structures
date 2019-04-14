@@ -2,34 +2,63 @@ var BinarySearchTree = function(value) { // prototypal instantiation pattern => 
   // var tree = Object.create(BinarySearchTree.prototype);
 
   this.value = value;
-  this.leftChild = null;
-  this.rightChild = null;
+  this.children = {};
+  this.children.leftChild = null;
+  this.children.rightChild = null;
 
   // return tree;
 };
 
-BinarySearchTree.prototype.left = function(value) {
-  // traverse binary tree to the left (towards a smaller value)
-  // call function on this.leftChild
+BinarySearchTree.prototype.left = function() {
+  return this.children.leftChild; // traverse binary tree to the left (towards a smaller value)
+  // points to left call function on this.leftChild
 };
 
-BinarySearchTree.prototype.right = function(value) {
-  // traverse tree to the right (towards a larger value)
-  // call function on this.rightChild
+BinarySearchTree.prototype.right = function() {
+  return this.children.rightChild; // traverse tree to the right (towards a larger value)
+  // points to right call function on this.rightChild
 };
 
-BinarySearchTree.prototype.insert = function(value) { 
-  // add a new tree at the proper location
-  // utilizes .left and .right to find the proper location
+BinarySearchTree.prototype.insert = function(newValue) { 
+   // add a new tree at the proper location
+  if (newValue > this.value) { // is new value greater than or less than this.value?
+    if (this.children.rightChild === null) { // if this.right child === null 
+      this.children.rightChild = new BinarySearchTree(newValue);
+    } else {
+      this.insert(this.children.rightChild); // instantiate new BinarySearchTree(newValue) to right child
+    }
+  }
+  if (newValue < this.value) {
+    if (this.children.leftChild === null) { // if this.left child === null 
+      this.children.leftChild = new BinarySearchTree(newValue); // instantiate new BinarySearchTree(newValue) to left child
+    } else {
+      this.insert(this.children.leftChild);
+    }
+  }
 };
 
-BinarySearchTree.prototype.contains = function(value) {
+BinarySearchTree.prototype.contains = function(inputValue) {
   // conducts a binary search using .left and .right
-  // 
+  // check if inputValue = this.value
+    // if so - return true
+    // else 
+      // is inputValue less than or greater than this.value?
+        // navigate to proper left or right child
+
+      // if inputValue > this.value && this.rightChild === null
+        // return false
+      
+      // if inputValue < this.value && this.leftChile === null
+        // return false
 };
 
 BinarySearchTree.prototype.depthFirstLog = function(cb) {
-
+  // recurse through entire tree structure
+    // invoke callback function on every tree node
+  // for (var child in this.children) {
+    // if child !== null
+      // recurse on child
+  // }
 };
 
 /*
